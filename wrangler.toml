@@ -1,0 +1,11 @@
+# 本地 `wrangler pages dev` 用的最小配置。
+# 线上 Git 集成的 Pages 项目在 Dashboard 配环境变量与绑定，不要用本文件推生产密钥。
+name = "shopsite"
+compatibility_date = "2026-11-16"
+pages_build_output_dir = "./public"
+
+# 可选：本地联调 D1（先在 Dashboard 创建数据库并拿到 UUID）
+# [[d1_databases]]
+# binding = "DB"
+# database_name = "shopsite-forms"
+# database_id = "00000000-0000-0000-0000-000000000000"

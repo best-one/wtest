@@ -1,0 +1,42 @@
+# 复制为 .dev.vars（已被 .gitignore 忽略）。wrangler pages dev 会自动读取。
+# 本地没有 Turnstile 密钥时，先跳过校验跑通链路：
+SKIP_TURNSTILE=1
+
+# 生产/联调真实校验时改为 0 或删除，并填入 Dashboard 里的 Secret Key：
+# TURNSTILE_SECRET_KEY=0x00000000000000000000000000000000AA
+# TURNSTILE_SITEKEY=0x00000000000000000000000000000000AA
+
+# ---- 可选 A：自有域名邮箱 SMTP（阿里邮箱 / 腾讯企业邮 / Google Workspace 等）----
+# 发件人必须是 SMTP_USER 本人地址，否则多服务器直拒。
+# 465 = 隐式 TLS(ssl)，587 = STARTTLS；25 端口 Cloudflare 全平台封锁，填了也连不通。
+# 阿里邮箱 SMTP_HOST=smtp.qiye.aliyun.com（个人 @aliyun.com 用 smtp.aliyun.com），
+#   只能 465 + ssl（阿里未开通 587）；SMTP_PASS 默认就是邮箱登录密码，
+#   只有后台开启了「三方客户端安全密码」才改填生成的 16 位密码。
+# 腾讯企业邮/QQ/163 则填后台生成的「客户端专用密码 / 授权码」，不是登录密码。
+# SMTP_HOST=smtp.qiye.aliyun.com
+# SMTP_PORT=465
+# SMTP_SECURE=ssl
+# SMTP_USER=forms@yourdomain.com
+# SMTP_PASS=xxxxxxxxxxxx
+# MAIL_FROM="Laser Consumables <forms@yourdomain.com>"
+# MAIL_TO="sales@yourdomain.com"
+
+# ---- 可选 B：Resend HTTP API（MAIL_FROM 必须是 Resend 已验证的域名）----
+# 原站 WordPress 表单的收件地址与自动回复模板见 README「与 WordPress 备份比对」一节，
+# 迁移时把 MAIL_TO 指向同一个销售收件人即可。
+# RESEND_API_KEY=re_xxxxxxxxxxxxxxxx
+# MAIL_FROM="Laser Consumables <forms@yourdomain.com>"
+# MAIL_TO="sales@yourdomain.com"
+# THANK_YOU_PATH=/thank-you/
+
+# ---- 本地自测：指向 D:/tmp/smtp_sink.py 的假 SMTP（不连真实服务器）----
+# SMTP_HOST=127.0.0.1
+# SMTP_PORT=2525
+# SMTP_SECURE=none
+# SMTP_USER=forms@example.com
+# SMTP_PASS=local-test-only
+# MAIL_FROM="Laser Consumables <forms@example.com>"
+# MAIL_TO="sales@example.com"
+
+# 可选：跨域调试时放行的额外来源
+# ALLOWED_ORIGINS=http://127.0.0.1:8788,https://your-preview.pages.dev

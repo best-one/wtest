@@ -1,0 +1,31 @@
+heading: Our advantage
+# 原站 #680 /6：3 行「左侧标题+说明 / 右侧两张工艺实拍」，
+# icon-box 的图标位置按 right / left / right 交替。图片顺序来自 image widgets。
+items:
+  - title: Exclusive Coating Technology
+    iconPosition: right
+    points:
+      - Vacuum evaporation + electron beam-assisted deposition ensures film adhesion ≥98% and 40% higher density, withstanding 30KW laser impact and dust abrasion.
+      - -40℃~200℃ temperature resistance maintains stable performance in harsh industrial conditions (cutting/welding), reducing coating-related replacements.
+    images:
+      - /images/advantage-2.webp
+      - /images/advantage-3.webp
+    alt: Vacuum coating and film adhesion inspection
+  - title: Super Polishing Process
+    iconPosition: left
+    points:
+      - Surface roughness <5 Å RMS (atomic-smooth), laser scattering loss ≤0.1% (50% below industry standards).
+      - 30% higher focusing accuracy for high-power use (PCB micro-drilling/engraving), boosting yield by 2%-5%.
+    images:
+      - /images/advantage-4.webp
+      - /images/advantage-5.webp
+    alt: Super polishing process and surface inspection
+  - title: ISO Class 100 Cleanroom
+    iconPosition: right
+    points:
+      - ISO Class 100 cleanroom production (≤100 particles/ft³, ≤0.5μm) prevents dust/impurity adhesion, eliminating beam distortion and energy loss at the source.
+      - Extends lens life by 30%+ and lowers total procurement costs.
+    images:
+      - /images/advantage-6.webp
+      - /images/advantage-7.webp
+    alt: ISO Class 100 cleanroom production

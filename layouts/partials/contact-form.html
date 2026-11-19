@@ -1,0 +1,57 @@
+{{- /*
+  Shared inquiry form. Called from the contact-form shortcode and the homepage
+  samples section. variant "" = contact page, "samples" = homepage form.
+  All internal hooks are classes so multiple instances can coexist.
+*/ -}}
+{{- $variant := .variant | default "" -}}
+{{- $sitekey := site.Params.turnstileSiteKey -}}
+{{- $endpoint := site.Params.contactEndpoint | default "/api/contact" -}}
+{{- $suffix := "" -}}
+{{- if ne $variant "" }}{{ $suffix = printf "-%s" $variant }}{{ end -}}
+{{- $label := "Get Free Quote" -}}
+{{- if eq $variant "samples" }}
+  {{- $label = site.Data.sections.samples.formLabel -}}
+{{- end -}}
+<form id="contact-form{{ $suffix }}" data-contact-form data-source-default="{{ $variant }}"
+      data-error="{{ site.Data.sections.samples.error }}"
+      method="POST" action="{{ $endpoint }}" class="space-y-5">
+  <p class="cf-context hidden rounded-lg border border-brand-100 bg-brand-50 px-4 py-3 text-sm text-ink-700"></p>
+  <input type="hidden" name="source" class="cf-source" value="">
+
+  <div class="grid gap-5 sm:grid-cols-2">
+    <div>
+      <label for="cf-name{{ $suffix }}" class="block text-sm font-medium text-ink-700">Name <span class="text-brand-600">*</span></label>
+      <input id="cf-name{{ $suffix }}" name="name" type="text" required maxlength="100" autocomplete="name" class="field" placeholder="Name">
+    </div>
+    <div>
+      <label for="cf-email{{ $suffix }}" class="block text-sm font-medium text-ink-700">Email <span class="text-brand-600">*</span></label>
+      <input id="cf-email{{ $suffix }}" name="email" type="email" required maxlength="254" autocomplete="email" class="field" placeholder="Email">
+    </div>
+  </div>
+
+  <div>
+    <label for="cf-message{{ $suffix }}" class="block text-sm font-medium text-ink-700">Message <span class="text-brand-600">*</span></label>
+    <textarea id="cf-message{{ $suffix }}" name="message" rows="5" required maxlength="5000" class="field" placeholder="Message"></textarea>
+  </div>
+
+  {{/* Honeypot: invisible to humans, silently discarded when bots fill it */}}
+  <div class="hidden" aria-hidden="true">
+    <label for="cf-website{{ $suffix }}">Leave this field empty</label>
+    <input id="cf-website{{ $suffix }}" name="website" type="text" tabindex="-1" autocomplete="off">
+  </div>
+
+  {{ if $sitekey }}
+    {{/* Turnstile implicit rendering injects the hidden cf-turnstile-response field */}}
+    <div class="cf-turnstile" data-sitekey="{{ $sitekey }}" data-theme="light" data-size="flexible"></div>
+  {{ else }}
+    <p class="rounded-lg border border-amber-300 bg-amber-50 px-4 py-3 text-sm text-amber-800">
+      Turnstile sitekey not configured: set <code>params.turnstileSiteKey</code> in <code>hugo.toml</code>.
+      For local testing, set <code>SKIP_TURNSTILE=1</code> in <code>.dev.vars</code>.
+    </p>
+  {{ end }}
+
+  <div class="flex flex-wrap items-center gap-4">
+    <button type="submit" class="btn-primary" data-label="{{ $label }}">{{ $label }}</button>
+    <p class="cf-status m-0 text-sm text-ink-500" role="status" aria-live="polite"></p>
+  </div>
+</form>

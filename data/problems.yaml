@@ -1,0 +1,12 @@
+heading: Frequent Shutdowns?
+lead: Such seemingly insignificant aspects are the root of breakdowns.
+items:
+  - title: COATING BURNOUT
+    text: Inconsistent deposition leading to low Laser-Induced Damage Threshold (LIDT) and rapid power decay.
+    image: /images/hero-main.webp
+  - title: BURN OUT THE NOZZLE
+    text: The nozzle was wrongly selected, resulting in its burnout.
+    image: /images/problem-nozzle.webp
+  - title: SUPPLY CHAIN INSTABILITY
+    text: Unreliable lead times and high MOQ for custom-engineered components, stalling your R&D.
+    image: /images/problem-coating.webp

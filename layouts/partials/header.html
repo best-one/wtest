@@ -1,0 +1,35 @@
+{{- $site := site.Data.site -}}
+{{- /* 原站 #932 Header：logo 占 5%，导航靠右 95% */ -}}
+<header class="sticky top-0 z-50 border-b border-ink-100 bg-white/95 backdrop-blur">
+  <div class="container-wide flex h-16 items-center justify-between gap-4">
+    <a href="/" class="flex shrink-0 items-center gap-3 no-underline hover:no-underline">
+      <img src="{{ $site.logo }}" alt="{{ $site.siteName }}" width="50" height="22" class="h-8 w-auto object-contain">
+      <span class="hidden text-base font-bold tracking-tight text-ink-900 sm:inline">{{ $site.brand }}</span>
+    </a>
+
+    <nav class="hidden items-center gap-6 text-sm font-medium lg:flex" aria-label="Main navigation">
+      {{ range $site.nav }}
+      <a href="{{ .href }}" class="text-ink-700 no-underline hover:text-brand-600">{{ .label }}</a>
+      {{ end }}
+    </nav>
+
+    <div class="flex shrink-0 items-center gap-3">
+      <a href="/contact/?ref=header" class="btn-primary hidden no-underline hover:no-underline sm:inline-flex">{{ $site.quickQuoteLabel }}</a>
+
+      <details class="relative lg:hidden">
+        <summary class="flex h-10 w-10 cursor-pointer list-none items-center justify-center rounded-lg border border-ink-100 text-ink-700">
+          <span class="sr-only">Menu</span>
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+            <path d="M3 5h14M3 10h14M3 15h14" stroke-linecap="round"/>
+          </svg>
+        </summary>
+        <nav class="absolute right-0 mt-3 w-56 rounded-xl border border-ink-100 bg-white p-2 shadow-lg" aria-label="Mobile navigation">
+          {{ range $site.nav }}
+          <a href="{{ .href }}" class="block rounded-lg px-3 py-2 text-sm text-ink-700 no-underline hover:bg-ink-50">{{ .label }}</a>
+          {{ end }}
+          <a href="/contact/?ref=menu" class="mt-1 block rounded-lg bg-brand-500 px-3 py-2 text-center text-sm font-semibold text-white no-underline">{{ $site.quickQuoteLabel }}</a>
+        </nav>
+      </details>
+    </div>
+  </div>
+</header>

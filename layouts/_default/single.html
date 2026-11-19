@@ -1,0 +1,11 @@
+{{ define "main" }}
+<section class="section bg-white">
+  <div class="container-wide">
+    <article class="prose prose-slate max-w-none">
+      <h1 class="text-3xl font-bold text-ink-900">{{ .Title }}</h1>
+      {{ if not .Date.IsZero }}<p class="text-sm text-ink-500">{{ .Date.Format "2006-01-02" }}</p>{{ end }}
+      {{ .Content }}
+    </article>
+  </div>
+</section>
+{{ end }}

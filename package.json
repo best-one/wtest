@@ -1,0 +1,24 @@
+{
+  "name": "shopsite",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Hugo + Tailwind CSS v4 site deployed on Cloudflare Pages with a Pages Functions contact form",
+  "scripts": {
+    "dev": "hugo server --buildDrafts --buildFuture --disableFastRender",
+    "build": "hugo --gc --minify --cleanDestinationDir",
+    "preview": "hugo server --minify --environment production",
+    "functions:dev": "npm run build && wrangler pages dev public",
+    "check": "npm run build"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.3.5",
+    "@tailwindcss/forms": "^0.5.11",
+    "@tailwindcss/typography": "^0.5.20",
+    "tailwindcss": "^4.3.5",
+    "wrangler": "^4.162.0"
+  }
+}

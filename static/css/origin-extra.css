@@ -1,0 +1,68 @@
+/* Minimal runtime glue for the static replica of laserconsums.com.
+   All visual CSS comes from /css/origin.css (the site's own Elementor CSS).
+   This file only supplies the pieces Elementor Pro normally injects at runtime. */
+
+[hidden] { display: none !important; }
+
+/* Elementor Pro popup modal shell (normally created by frontend.min.js) */
+.elementor-popup-modal {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  z-index: 9999;
+  pointer-events: none;
+}
+.elementor-popup-modal .dialog-widget-content {
+  position: relative;
+  pointer-events: all;
+  max-height: 100%;
+  max-width: 100%;
+}
+.elementor-popup-modal .dialog-message { pointer-events: all; }
+#elementor-popup-modal-901 .elementor-901 { display: block !important; }
+#elementor-popup-modal-901 .dialog-close-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #1f2124;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  pointer-events: all;
+  z-index: 9999;
+}
+#elementor-popup-modal-901 .dialog-close-button svg { fill: currentColor; height: 1em; width: 1em; }
+
+/* Form status line uses Elementor's own .elementor-message styling */
+.elementor-message[hidden] { display: none !important; }
+.elementor-message { font-size: 1em; line-height: 1.4; margin: 10px 0; }
+.elementor-message.elementor-message-danger { color: #d9534f; }
+.elementor-message.form-message-success { color: #5cb85c; }
+
+/* Keep the mobile nav usable without ElementsKit's nav-menu JS */
+@media (max-width: 1024px) {
+  .elementor-680 .elementor-element.elementor-element-2056042d { padding-left: 20px; padding-right: 20px; }
+}
+
+/* Pain-point cards: three descriptions must occupy the same height.
+   The original page compensated the short 2-line description with a <br>;
+   min-height does the same job and scales with the responsive font size
+   (line-height is 1.5em, so 3 lines = 4.5em = 63px at 14px). */
+.elementor-680 .elementor-element-3cd27585 .elementor-icon-box-description,
+.elementor-680 .elementor-element-4a32443a .elementor-icon-box-description,
+.elementor-680 .elementor-element-232153eb .elementor-icon-box-description {
+  min-height: 4.5em;
+}
+.elementor-680 .elementor-element-4a32443a .elementor-icon-box-content > br {
+  display: none;
+}

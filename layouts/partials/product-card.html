@@ -1,0 +1,28 @@
+{{- /* 原站 #680 /4 产品卡结构：icon-box(标题+副标题) → image → icon-list(全部规格) → button
+       数据源已从 data/products.yaml 改到每个产品页自身的 front matter。 */ -}}
+{{- $slug := .File.ContentBaseName -}}
+<article class="flex flex-col overflow-hidden rounded-xl border border-ink-100 bg-white shadow-sm transition hover:shadow-lg">
+  <div class="px-5 pt-5 pb-3">
+    {{- /* min-h 固定两行标题高度：标题长短不一时（如 "Laser Cutting Nozzles — Type 01"
+           与 "Laser Welding Nozzles"），下方副标题、图片、规格才能逐行对齐。 */ -}}
+    <h3 class="m-0 min-h-[3rem] text-base font-bold text-ink-900">
+      <a href="{{ .RelPermalink }}" class="text-ink-900 no-underline hover:text-brand-600">{{ .Title }}</a>
+    </h3>
+    <p class="mt-1 m-0 text-xs text-ink-500">{{ .Params.subtitle }}</p>
+  </div>
+
+  <a href="{{ .RelPermalink }}" class="block bg-white px-5 no-underline">
+    <img src="{{ .Params.image }}" alt="{{ .Title }}" width="500" height="500" loading="lazy"
+         class="h-[220px] w-full object-contain sm:h-[240px] lg:h-[210px]">
+  </a>
+
+  <ul class="ekit-icon-list mx-5 mt-2 border-t border-ink-100 pt-4">
+    {{ range .Params.specs }}
+    <li><span class="ekit-tick" aria-hidden="true">✓</span><span><strong class="font-semibold text-ink-700">{{ .label }}:</strong> {{ .value }}</span></li>
+    {{ end }}
+  </ul>
+
+  <div class="mt-auto px-5 pt-5 pb-5">
+    <a href="/contact/?ref={{ $slug }}" class="btn-primary w-full no-underline hover:no-underline">Get Free Quote</a>
+  </div>
+</article>

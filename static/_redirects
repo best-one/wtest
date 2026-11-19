@@ -1,0 +1,5 @@
+# Cloudflare Pages _redirects - one rule per line, matched before static assets.
+# Never add rules for /api/* here or you will shadow the Pages Functions POST route.
+# 原站 WordPress 的落地页是 /thank-you/；Hugo 版本沿用该路径。
+/contact-thanks   /thank-you/   301
+/thanks/          /thank-you/   301

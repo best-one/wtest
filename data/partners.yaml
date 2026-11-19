@@ -1,0 +1,18 @@
+heading: Our Partners
+items:
+  - name: Tesla
+    image: /images/partner-tesla.png
+  - name: Ford
+    image: /images/partner-ford.png
+  - name: Fanuc
+    image: /images/partner-fanuc.png
+  - name: Delphi
+    image: /images/partner-delphi.png
+  - name: Bosch
+    image: /images/partner-bosch.png
+  - name: Autoliv
+    image: /images/partner-autoliv.png
+  - name: ABB
+    image: /images/partner-abb.png
+  - name: Gestamp
+    image: /images/partner-gestamp.jpg

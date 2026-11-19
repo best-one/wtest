@@ -1,0 +1,12 @@
+# Cloudflare Pages _headers - indented lines are "Header: value" pairs
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: DENY
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+
+/api/*
+  Cache-Control: no-store
+
+# If you add a CSP, allow https://challenges.cloudflare.com (Turnstile script + iframe).
+# Fingerprinted CSS/JS already gets long-lived caching from Pages.

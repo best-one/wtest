@@ -1,0 +1,62 @@
+# ---------------------------------------------------------------------------
+# Shopsite — Hugo + Tailwind CSS v4 + Cloudflare Pages
+# 版本锁定见 .hugo-version（本地与 Cloudflare Pages 的 HUGO_VERSION 必须一致）
+# ---------------------------------------------------------------------------
+baseURL = 'https://example.com/'          # 上线前改成自定义域或 *.pages.dev
+locale = 'en-US'
+title = 'Laser Consumables-Better Laser'
+# 模板未使用 GitInfo，保持 false 可让「刚 git init、还没有 commit」的本地仓库也能构建。
+# 若要用 .GitInfo / lastmod 自动取 Git 时间，改成 true 并确保仓库已有提交（CI 里需 fetch-depth: 0）。
+enableGitInfo = false
+enableRobotsTXT = true
+# 该站没有博客分类体系，避免生成空的 /categories/ 与 /tags/ 页面
+disableKinds = ['taxonomy', 'term']
+
+[params]
+  description = 'Laser Consumables Manufacturer — professional fiber & CO2 laser optics, cutting and welding nozzles, direct from a China source factory.'
+  # Cloudflare Turnstile 的 Sitekey（公开值，可提交到仓库）。
+  # 在 Cloudflare Dashboard → Turnstile → Add widget 获取，域名填 *.pages.dev 与自定义域。
+  turnstileSiteKey = ''
+  # 表单提交端点。默认走项目内 Pages Function（本地/回退用）。
+  # 接入独立部署的邮件网关（emailworker）时，填完整地址：
+  #   https://emailworker.<账号>.workers.dev/f/contact
+  # 生产无需改仓库：在 Pages 构建变量里设 HUGO_PARAMS_CONTACTENDPOINT 即可覆盖。
+  # 网关侧还需把站点 origin 加进 FORMS KV 的 allowedOrigins 与网关的 CORS_ALLOWED_ORIGINS。
+  contactEndpoint = '/api/contact'
+
+# --- Tailwind v4 集成（Hugo 官方 css.TailwindCSS 函数）-----------------------
+# buildStats 让 Hugo 把渲染后 HTML 中出现过的 class 写入 hugo_stats.json，
+# Tailwind 通过 @source 读取它，实现按需生成。
+[build]
+  [build.buildStats]
+    enable = true
+  [[build.cachebusters]]
+    source = 'assets/notwatching/hugo_stats\.json'
+    target = 'css'
+  [[build.cachebusters]]
+    source = '(postcss|tailwind)\.config\.js'
+    target = 'css'
+
+[module]
+  [[module.mounts]]
+    source = 'assets'
+    target = 'assets'
+  [[module.mounts]]
+    disableWatch = true
+    source = 'hugo_stats.json'
+    target = 'assets/notwatching/hugo_stats.json'
+
+# Hugo 通过 npx 调用 @tailwindcss/cli，需要在 exec 白名单中放行。
+[security]
+  [security.exec]
+    allow = ['^(dart-)?sass$', '^go$', '^git$', '^node$', '^npx$', '^postcss$', '^tailwindcss$']
+
+[markup]
+  [markup.goldmark]
+    # 产品页正文用标准 markdown，不依赖 raw HTML，保持最严格设置。
+    # 若以后要在正文里直接写 HTML，需要改成 true。
+    [markup.goldmark.renderer]
+      unsafe = false
+
+[outputs]
+  home = ['HTML', 'RSS']

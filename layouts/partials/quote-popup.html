@@ -1,0 +1,10 @@
+{{- /* 原站全站 Popup #901 的原文案；/thank-you/ 不输出（见 baseof.html） */ -}}
+{{- $p := site.Data.sections.popup -}}
+<aside class="quote-popup" data-quote-popup hidden aria-label="Quick quote">
+  <button type="button" class="quote-popup-close" data-quote-popup-close aria-label="Close">&times;</button>
+  <p class="m-0 text-xs font-semibold uppercase tracking-[0.18em] text-brand-600">{{ $p.eyebrow }}</p>
+  <h2 class="mt-2 m-0 text-xl font-bold text-ink-900">{{ $p.heading }}</h2>
+  <p class="mt-3 m-0 text-sm leading-relaxed text-ink-500">{{ $p.body }}</p>
+  <p class="mt-3 m-0 text-sm font-semibold text-ink-900">{{ $p.lead }}</p>
+  <a href="/contact/?ref=popup" class="btn-primary mt-5 w-full no-underline hover:no-underline">{{ $p.heading }}</a>
+</aside>

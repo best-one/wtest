@@ -1,0 +1,16 @@
+heading: Why choose us?
+subheading: Maximize Performance, Minimize Cost.
+points:
+  - title: R&D Partnership
+    text: Collaborative design from concept to volume production – custom solutions delivered in 4 weeks.
+  - title: Stocked Supply Chain
+    text: Guaranteed inventory for standard components – 24-hour dispatch readiness.
+  - title: Lifetime Value
+    text: Component service life extended by up to 30% vs. industry averages.
+cta: Get Free Quote
+# 原站 #680 /7/0/1/0/1/0 gallery widget：masonry、2 列、4 张
+images:
+  - /images/why-team.avif
+  - /images/factory-1.jpg
+  - /images/factory-2.jpg
+  - /images/factory-3.jpg

@@ -1,0 +1,29 @@
+eyebrow: Fully Customizable
+heading: Laser Consumables customized to match your requirements
+specs:
+  - label: Wavelength
+    value: 532/1064/1080/10600 nm (10.6 μm) – available as per customer requirements
+  - label: Material
+    value: 7980/S1/Silicon/Zinc Selenide/Germanium – customizable to customer requirements
+  - label: Diameter
+    value: 25.4/38.1/50.8/100 mm – configurable according to customer needs
+  - label: Coating
+    value: AR/Gold/Aluminum – offered as per customer specifications
+  - label: Thickness
+    value: 3/4/10/15 mm–tailored to customer requirements
+  - label: Power
+    value: 1–30 KW – selectable based on customer requirements
+cta: Start customizing your specs
+
+# 原站 #680 /5/1/0 = ElementsKit elementskit-image-comparison (twentytwenty)
+# horizontal 拖动对比：Before 工程图 ↔ After 成品镜片；默认分隔线 50%
+compare:
+  orientation: horizontal
+  offset: 50
+  before: /images/custom-specs.png
+  beforeLabel: Before
+  after: /images/advantage-1.webp
+  afterLabel: After
+  altBefore: Custom lens dimension drawing — before production
+  altAfter: Finished coated laser lens — after production
+  hint: Drag to compare the drawing with the finished optic

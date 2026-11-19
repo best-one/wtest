@@ -1,0 +1,59 @@
+brand: Better Laser
+siteName: Laser Consumables-Better Laser
+tagline: Laser Consumables Manufacturer
+logo: /images/logo.webp
+
+# 原站导航（Elementor #680 icon-list，锚点与顺序完全按原文）
+nav:
+  - label: Home
+    href: /#home
+  - label: Partners
+    href: /#partner
+  - label: Product
+    href: /#product
+  - label: About
+    href: /#about
+  - label: Advantage
+    href: /#advance
+  - label: Contact
+    href: /#contact
+  - label: FAQ
+    href: /#faq
+quickQuoteLabel: Quick Quote Now !
+
+hero:
+  eyebrow: Direct Source Factory – No Middlemen !
+  title: Professional laser consumables supplier In China
+  cta: Get a free quote now!
+  highlights:
+    - Exclusive coating technology boosts the service life by 30%
+    - "MOQ: 50 pcs"
+    - Standard products will be shipped within 24 hours of order confirmation
+  # 原站 Hero 是背景视频 + 视频封面图，无静态主图
+  poster: /images/hero-bg.webp
+  video: /media/laserprocessvideo.mp4
+
+stats:
+  - label: Professional
+    text: Exclusive technology (ISO9001 certified) guarantees a dense, uniform coating layer with 30KW power resistance and 30% extended service life.
+  - label: 15+ Years
+    text: Boasting a team of optical R&D engineers with over 15 years of experience, we have served more than 3,000 clients cumulatively.
+  - label: Swift delivery
+    text: With local warehouses in Vietnam, Malaysia and Indonesia, standard parts are dispatched within 24 hours of order confirmation.
+
+about:
+  heading: About US
+  lead: As a seasoned laser consumables specialist, our founder leads the team to top global exhibitions (LASER World of PHOTONICS, CIOE) with the core of "technical depth + industry exchange".
+  body: We dialogue with world-class institutions and leaders, translating cutting-edge insights into product upgrades and custom solutions.
+  closing: "Choose us: high-quality laser consumables, a globally focused, technically solid partner—professionalism tested, trust guarded by innovation and quality."
+  quote: Professional, meticulous and trusted laser consumables specialist.
+  quoteText: "With 15 years of experience in laser consumables processing , I can quickly grasp your requirements and craft the optimal procurement solution tailored to you."
+  # 原站 #680 /9/0/0 左大图（团队合影）
+  image: /images/about-team.jpg
+  # 原站 #680 /9/1 三张横排图
+  gallery:
+    - /images/about-exhibition-1.jpg
+    - /images/about-exhibition-2.jpg
+    - /images/about-factory.png
+  # 原站 #680 /10 创始人卡片（左 25% 人像 + 右 75% 文案与按钮）
+  portrait: /images/about-founder.png

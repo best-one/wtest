@@ -1,0 +1,15 @@
+{{ define "main" }}
+{{- $f := site.Data.sections.faq -}}
+{{- /* 原站 #680 /11：左 35% 标题与说明 / 右 65% toggle 手风琴 */ -}}
+<section class="section bg-white">
+  <div class="container-wide grid gap-10 lg:grid-cols-[35%_65%]">
+    <div>
+      <p class="eyebrow">{{ $f.eyebrow }}</p>
+      <h1 class="m-0 text-3xl font-bold tracking-tight text-ink-900 sm:text-4xl">{{ $f.heading }}</h1>
+      <p class="mt-5 text-base leading-relaxed text-ink-500">{{ $f.lead }}</p>
+      <a href="/contact/?ref=faq" class="btn-primary mt-7 no-underline hover:no-underline">Contact US</a>
+    </div>
+    <div>{{ partial "faq-list.html" . }}</div>
+  </div>
+</section>
+{{ end }}

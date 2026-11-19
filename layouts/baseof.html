@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="{{ .Site.Language.Lang }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} · {{ site.Data.site.brand }}{{ end }}</title>
+  <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} · {{ site.Data.site.brand }}{{ end }}">
+  <meta property="og:description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+  <meta property="og:image" content="{{ site.Data.site.logo | absURL }}">
+  {{/* 延迟到所有页面渲染完成后再编译 CSS，保证 hugo_stats.json 已包含全部 class */}}
+  {{ with (templates.Defer (dict "key" "global")) }}
+    {{ partial "css.html" . }}
+  {{ end }}
+  <link rel="stylesheet" href="/css/origin-fonts.css">
+  <link rel="icon" href="/images/logo-favicon.png" type="image/png">
+  {{ if or .Params.turnstile .IsHome }}<link rel="preconnect" href="https://challenges.cloudflare.com">{{ end }}
+</head>
+<body class="flex min-h-screen flex-col antialiased">
+  {{ partial "header.html" . }}
+  {{/* 原站 Elementor 全宽容器：各页面自行使用 container-wide，不再套 max-w-5xl */}}
+  <main class="flex-1">{{ block "main" . }}{{ end }}</main>
+  {{ partial "footer.html" . }}
+
+  {{/* 首页 /contact/ /thank-you/ 使用原站静态化模板与 #901 原版弹窗；
+       原站不存在的自建页不再输出自制浮层，避免风格割裂。 */}}
+
+  {{ if and site.Params.turnstileSiteKey (or .Params.turnstile .IsHome) }}<script defer src="https://challenges.cloudflare.com/turnstile/v0/api.js"></script>{{ end }}
+  <script defer src="/js/compare.js"></script>
+  <script defer src="/js/contact.js"></script>
+  <script defer src="/js/back-to-top.js"></script>
+</body>
+</html>

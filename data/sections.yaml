@@ -1,0 +1,42 @@
+# 首页各版块的原文案，逐条来自 WordPress 备份 Elementor #680 / popup #901。
+# 模板只读取本文件，不再内嵌自创英文。
+
+products:
+  heading: Our Products
+  lead: The Right Optic for Every Application – Our Full-Spectrum Industrial Product Line.
+
+advantages:
+  heading: Our advantage
+
+partners:
+  heading: Our Partners
+
+about:
+  heading: About US
+
+faq:
+  eyebrow: Common Questions
+  heading: Most Popular Questions.
+  lead: We have listed some questions you may ask. If you have more inquiries about our products, you can send an inquiry to contact us.
+
+# 原站首页底部 CTA 版块 #680 /12（背景图 + 左文案/logo/divider + 右表单卡片）
+factory:
+  heading: Want to find the source factory to save money ?
+  body: Having been deeply engaged in the laser consumables source factory for many years, we can customize wavelengths (1060-1080nm/10.6μm, etc.), size specifications and exclusive coating solutions according to your needs. With mature production experience and precise adaptation capabilities, we help you achieve cost optimization and performance upgrade, maximizing the value of cooperation.
+  background: /images/advantage-2.webp
+  logo: /images/logo.webp
+
+# 原站首页「样品申请」版块，含页面内嵌表单（此前缺失）
+samples:
+  heading: Get Samples Now !
+  body: Check out our laser consumables samples. Take a look at the quality of our products with your own eyes. Let's officially start our cooperation.
+  formLabel: Send Me Sample requirements
+  success: Your submission was successful.
+  error: Your submission failed because of an error.
+
+# 原站全站弹窗 #901（条件：exclude/singular/page/549，即除 Thank You 页外全站显示）
+popup:
+  eyebrow: Do you have two minutes？
+  body: "We’re more than just a manufacturer or supplier. When you reach out, you'll get practical advice and tailored support from industry experts — saving you time, cost, and stress."
+  heading: Get Free Quote
+  lead: Tell us what you need — we’ll handle the rest.

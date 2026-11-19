@@ -1,0 +1,267 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+@plugin "@tailwindcss/forms";
+
+/* Hugo 把模板渲染结果里出现过的 class 记录在 hugo_stats.json，
+   Tailwind 据此按需生成工具类。.gitignore 会屏蔽它，所以必须显式 @source。*/
+@source "hugo_stats.json";
+
+/* 取自原站 Elementor 全局色：primary #616379 / secondary #222334 / accent #ff6347 */
+@theme {
+  --color-brand-50: #fff3ef;
+  --color-brand-100: #ffe1d6;
+  --color-brand-200: #ffc4ae;
+  --color-brand-400: #ff8a68;
+  --color-brand-500: #ff6347;
+  --color-brand-600: #ed4a2d;
+  --color-brand-700: #c63a21;
+
+  --color-ink-50: #f5f6fa;
+  --color-ink-100: #e8eaf2;
+  --color-ink-500: #616379;
+  --color-ink-700: #34364d;
+  --color-ink-800: #222334;
+  --color-ink-900: #161728;
+
+  --font-sans: "Inter", "Noto Sans SC", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Raleway", "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 88px;
+  }
+  body {
+    @apply bg-white text-ink-800;
+  }
+  a {
+    @apply text-brand-600 underline-offset-4 hover:underline;
+  }
+}
+
+@layer components {
+  .container-wide {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+  .section {
+    @apply py-16 sm:py-20;
+  }
+  .eyebrow {
+    @apply mb-3 inline-block text-[14px] font-medium normal-case tracking-normal text-brand-600;
+  }
+  .section-title {
+    @apply font-display text-[42px] font-bold leading-[1.15] tracking-[-0.5px] text-ink-900;
+  }
+  .section-lead {
+    @apply mt-4 max-w-2xl text-[16px] leading-[1.7] text-ink-500;
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-none bg-brand-500 px-7 py-3.5
+           text-[13px] font-semibold uppercase tracking-[0.05em] text-white transition
+           hover:bg-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-400 focus:ring-offset-2
+           disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-outline {
+    @apply inline-flex items-center justify-center rounded-lg border border-white/40 bg-white/5
+           px-5 py-2.5 text-sm font-semibold text-white transition
+           hover:bg-white/15 focus:outline-none focus:ring-2 focus:ring-white/60;
+  }
+  .btn-light {
+    @apply inline-flex items-center justify-center rounded-lg border border-ink-100 bg-white
+           px-5 py-2.5 text-sm font-semibold text-ink-800 transition
+           hover:border-brand-400 hover:text-brand-600;
+  }
+  .card {
+    @apply rounded-xl border border-ink-100 bg-white p-6 shadow-sm;
+  }
+  .field {
+    @apply mt-1 block w-full rounded-lg border-ink-100 shadow-sm
+           focus:border-brand-400 focus:ring-brand-400;
+  }
+  /* 原站大量版块标题居中，副标题紧随其下 */
+  .section-title-center {
+    @apply text-center font-display text-[42px] font-bold leading-[1.15] tracking-[-0.5px] text-ink-900;
+  }
+  .section-lead-center {
+    @apply mt-4 text-center text-[16px] leading-[1.7] text-ink-500;
+  }
+  /* 原站 icon-box / icon-list：左侧小图标 + 标题 + 说明 */
+  .ekit-icon-list {
+    @apply m-0 list-none space-y-3 p-0;
+  }
+  .ekit-icon-list > li {
+    @apply flex items-start gap-3 text-sm leading-relaxed text-ink-500;
+  }
+  .ekit-icon-list .ekit-tick {
+    @apply mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand-500 text-[11px] font-bold leading-none text-white;
+  }
+}
+
+/* ------------------------------------------------------------------
+   Before / After 拖动对比组件
+   复刻原站 ElementsKit image-comparison 使用的 twentytwenty 交互与视觉：
+   白色圆形手柄、上下分隔线、黑色左右箭头、hover 时 .twentytwenty-overlay 变暗
+   并显示 Before / After 标签。纯 CSS + 原生 JS，不依赖 jQuery。
+   ------------------------------------------------------------------ */
+.twentytwenty-wrapper {
+  position: relative;
+  width: 100%;
+}
+.twentytwenty-container {
+  --tt-pos: 50%;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #fff;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: none;
+  cursor: col-resize;
+  box-shadow: 0 12px 32px rgba(22, 23, 40, 0.12);
+}
+.twentytwenty-container img {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+  -webkit-user-drag: none;
+}
+.twentytwenty-before {
+  z-index: 20;
+  clip-path: inset(0 calc(100% - var(--tt-pos)) 0 0);
+}
+.twentytwenty-after { z-index: 10; }
+
+.twentytwenty-divider {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--tt-pos);
+  width: 3px;
+  margin-left: -1.5px;
+  background: #fff;
+  box-shadow: 0 0 12px rgba(51, 51, 51, 0.5);
+  z-index: 30;
+  pointer-events: none;
+}
+.twentytwenty-handle {
+  position: absolute;
+  top: 50%;
+  left: var(--tt-pos);
+  width: 38px;
+  height: 38px;
+  margin: -22px 0 0 -22px;
+  border: 3px solid #fff;
+  border-radius: 1000px;
+  background: #fff;
+  box-shadow: 0 2px 12px rgba(22, 23, 40, 0.35);
+  z-index: 40;
+  cursor: col-resize;
+  display: grid;
+  place-items: center;
+}
+.twentytwenty-handle:focus-visible {
+  outline: 3px solid #ff6347;
+  outline-offset: 3px;
+}
+.twentytwenty-arrow {
+  position: absolute;
+  top: 50%;
+  width: 0;
+  height: 0;
+  margin-top: -6px;
+  border: 6px inset transparent;
+}
+.twentytwenty-left-arrow {
+  left: 50%;
+  margin-left: -17px;
+  border-right: 6px solid #000;
+}
+.twentytwenty-right-arrow {
+  right: 50%;
+  margin-right: -17px;
+  border-left: 6px solid #000;
+}
+.twentytwenty-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 25;
+  background: rgba(0, 0, 0, 0);
+  transition: background 0.5s ease;
+  pointer-events: none;
+}
+.twentytwenty-container:hover .twentytwenty-overlay,
+.twentytwenty-container:focus-within .twentytwenty-overlay {
+  background: rgba(0, 0, 0, 0.5);
+}
+.twentytwenty-label {
+  position: absolute;
+  top: 50%;
+  margin-top: -19px;
+  line-height: 38px;
+  padding: 0 20px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  white-space: nowrap;
+}
+.twentytwenty-before-label { left: 10px; }
+.twentytwenty-after-label { right: 10px; }
+.twentytwenty-container:hover .twentytwenty-label,
+.twentytwenty-container:focus-within .twentytwenty-label { opacity: 1; }
+/* 拖动中隐藏遮罩与标签，与原站 .twentytwenty-container.active 一致 */
+.twentytwenty-container.twentytwenty-active .twentytwenty-overlay { background: rgba(0, 0, 0, 0); }
+.twentytwenty-container.twentytwenty-active .twentytwenty-label { opacity: 0; }
+.twentytwenty-hint {
+  margin: 12px 0 0;
+  text-align: center;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: #616379;
+}
+
+/* ------------------------------------------------------------------
+   原站全站 Quick Quote 弹窗（Elementor Popup #901）
+   ------------------------------------------------------------------ */
+.quote-popup {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 60;
+  width: min(360px, calc(100vw - 40px));
+  border-radius: 16px;
+  border: 1px solid #e8eaf2;
+  background: #fff;
+  box-shadow: 0 20px 60px rgba(22, 23, 40, 0.28);
+  padding: 24px;
+}
+.quote-popup[hidden] { display: none; }
+.quote-popup-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 32px;
+  height: 32px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: #616379;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+}
+.quote-popup-close:hover { background: #f5f6fa; }
+
+@media (prefers-reduced-motion: reduce) {
+  .twentytwenty-overlay, .twentytwenty-label { transition: none; }
+}

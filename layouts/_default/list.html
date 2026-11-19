@@ -1,0 +1,12 @@
+{{ define "main" }}
+<h1 class="mb-6 text-3xl font-extrabold text-slate-900">{{ .Title }}</h1>
+{{ .Content }}
+<ul class="mt-6 space-y-3">
+  {{ range .Pages }}
+  <li class="card flex items-baseline justify-between gap-4">
+    <a href="{{ .RelPermalink }}" class="font-semibold no-underline hover:underline">{{ .Title }}</a>
+    <time class="shrink-0 text-sm text-slate-500">{{ .Date.Format "2006-01-02" }}</time>
+  </li>
+  {{ end }}
+</ul>
+{{ end }}

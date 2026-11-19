@@ -1,0 +1,26 @@
+{{- /*
+  Before / After 拖动对比组件（原站 #680 /5/1/0 ElementsKit image-comparison）。
+  参数：before / after / beforeLabel / afterLabel / altBefore / altAfter / offset / hint / class
+*/ -}}
+{{- $c := . -}}
+<div class="twentytwenty-wrapper {{ with $c.class }}{{ . }}{{ end }}">
+  <div class="twentytwenty-container twentytwenty-horizontal" data-image-compare
+       data-offset="{{ $c.offset | default 50 }}"
+       data-before-label="{{ $c.beforeLabel | default `Before` }}"
+       role="group" aria-label="{{ $c.hint | default `Before and after image comparison` }}">
+    <img class="twentytwenty-after" src="{{ $c.after }}" alt="{{ $c.altAfter }}" loading="lazy" decoding="async">
+    <img class="twentytwenty-before" src="{{ $c.before }}" alt="{{ $c.altBefore }}" loading="lazy" decoding="async">
+    <div class="twentytwenty-divider" aria-hidden="true"></div>
+    <div class="twentytwenty-handle" role="slider" tabindex="0"
+         aria-label="{{ $c.hint | default `Image comparison slider` }}"
+         aria-orientation="horizontal" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{ $c.offset | default 50 }}">
+      <span class="twentytwenty-arrow twentytwenty-left-arrow" aria-hidden="true"></span>
+      <span class="twentytwenty-arrow twentytwenty-right-arrow" aria-hidden="true"></span>
+    </div>
+    <div class="twentytwenty-overlay" aria-hidden="true">
+      <span class="twentytwenty-label twentytwenty-before-label">{{ $c.beforeLabel | default `Before` }}</span>
+      <span class="twentytwenty-label twentytwenty-after-label">{{ $c.afterLabel | default `After` }}</span>
+    </div>
+  </div>
+  {{ with $c.hint }}<p class="twentytwenty-hint">{{ . }}</p>{{ end }}
+</div>

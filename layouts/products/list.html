@@ -1,0 +1,16 @@
+{{ define "main" }}
+{{- /* 与首页 /4 产品版块同版式：居中标题 + 4 列产品卡
+       产品条目来自 content/products/*.md，按 front matter 的 weight 排序。 */ -}}
+<section class="section bg-white">
+  <div class="container-wide">
+    <h1 class="section-title-center">{{ site.Data.sections.products.heading }}</h1>
+    <p class="section-lead-center">{{ site.Data.sections.products.lead }}</p>
+    <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      {{ range .Pages }}{{ partial "product-card.html" . }}{{ end }}
+    </div>
+    <div class="mt-10 text-center">
+      <a href="/contact/?ref=catalog" class="btn-primary no-underline hover:no-underline">Get Free Quote</a>
+    </div>
+  </div>
+</section>
+{{ end }}

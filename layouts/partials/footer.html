@@ -1,0 +1,50 @@
+{{- $site := site.Data.site -}}
+{{- /* 原站 #914 Footer：28% 品牌 / 17% Customer Service / 17% Quick Links / 20% Get In Touch / 19% 订阅列 + 底部居中版权条 */ -}}
+<footer class="border-t border-ink-100 bg-ink-900 text-ink-100">
+  <div class="container-wide grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1.2fr_1.1fr]">
+    <div>
+      <div class="mb-4 flex items-center gap-3">
+        <img src="{{ $site.logo }}" alt="{{ $site.brand }}" width="40" height="40" class="h-10 w-auto rounded-lg bg-white object-contain p-1">
+        <span class="text-base font-bold text-white">{{ $site.brand }}</span>
+      </div>
+      <p class="m-0 text-sm leading-relaxed text-ink-100/70">{{ $site.tagline }}. Direct source factory with ISO9001-certified coating technology, serving 3,000+ clients over 15 years.</p>
+    </div>
+
+    <div>
+      <h3 class="mb-4 text-sm font-semibold text-white">Customer Service</h3>
+      <ul class="m-0 list-none space-y-2 p-0 text-sm">
+        <li><a href="/faq/" class="text-ink-100/70 no-underline hover:text-brand-400">FAQ</a></li>
+        <li><a href="/contact/" class="text-ink-100/70 no-underline hover:text-brand-400">Get Free Quote</a></li>
+        <li><a href="/#contact" class="text-ink-100/70 no-underline hover:text-brand-400">Samples</a></li>
+        <li><a href="/#custom" class="text-ink-100/70 no-underline hover:text-brand-400">Customization</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h3 class="mb-4 text-sm font-semibold text-white">Quick Links</h3>
+      <ul class="m-0 list-none space-y-2 p-0 text-sm">
+        {{ range $site.nav }}
+        <li><a href="{{ .href }}" class="text-ink-100/70 no-underline hover:text-brand-400">{{ .label }}</a></li>
+        {{ end }}
+      </ul>
+    </div>
+
+    <div>
+      <h3 class="mb-4 text-sm font-semibold text-white">Get In Touch</h3>
+      <p class="m-0 mb-5 text-sm leading-relaxed text-ink-100/70">Tell us what you need — we’ll handle the rest.</p>
+      <a href="/contact/?ref=footer" class="btn-primary no-underline hover:no-underline">Get Free Quote</a>
+    </div>
+
+    <div>
+      <h3 class="mb-4 text-sm font-semibold text-white">Product catalog</h3>
+      <p class="m-0 mb-5 text-sm leading-relaxed text-ink-100/70">Full 2025 catalog — optics, nozzles, specifications and customization options.</p>
+      <a href="/files/Better-Laser-2025.pdf" class="text-sm font-semibold text-brand-400 no-underline hover:underline" download>DOWNLOAD CATALOG →</a>
+    </div>
+  </div>
+
+  <div class="border-t border-white/10">
+    <div class="container-wide flex min-h-[45px] items-center justify-center py-4 text-xs text-ink-100/60">
+      <p class="m-0 text-center">&copy; {{ now.Year }} {{ $site.brand }}. All Rights Reserved.</p>
+    </div>
+  </div>
+</footer>
