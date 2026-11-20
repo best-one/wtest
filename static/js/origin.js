@@ -132,7 +132,14 @@
         var holder = doc.createElement("div");
         holder.className = "cf-turnstile";
         var submit = form.querySelector('[type="submit"]');
-        form.insertBefore(holder, submit ? submit.parentNode : null);
+        // 必须插在按钮所在的父节点里；submit.parentNode 通常不是 form 的直接子节点，
+        // 直接 form.insertBefore(holder, submit.parentNode) 会抛 NotFoundError。
+        var anchor = submit && submit.parentNode;
+        if (anchor) {
+          anchor.insertBefore(holder, submit);
+        } else {
+          form.appendChild(holder);
+        }
         try {
           window.turnstile.render(holder, { sitekey: sitekey, "response-field-name": "cf-turnstile-response" });
         } catch (e) {}
